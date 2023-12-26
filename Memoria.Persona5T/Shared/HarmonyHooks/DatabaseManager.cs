@@ -610,7 +610,7 @@ public static class DatabaseManager<T>
                 Apply(listIndex, entry);
 
                 if (addMethod is null)
-                    addMethod = AccessTools.Method("Add");
+                    addMethod = AccessTools.Method(entries.GetType(), $"Add") ?? throw new Exception("Cannot find method Add");
 
                 addMethod.Invoke(entries, new[] { entry });
             }
@@ -631,7 +631,7 @@ public static class DatabaseManager<T>
             foreach (Int32 rowIndex in changes.RemovedIndices.OrderByDescending(i => i))
             {
                 if (removeAt is null)
-                    removeAt = AccessTools.Method("RemoveAt");
+                    removeAt = AccessTools.Method(entries.GetType(), "RemoveAt") ?? throw new Exception("Cannot find method RemoveAt");
 
                 removeAt.Invoke(entries, new Object[] { rowIndex });
             }

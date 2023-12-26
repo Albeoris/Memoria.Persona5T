@@ -34,8 +34,8 @@ public sealed class CsvContent
             HashSet<String> processedColumns = new();
             if (parts.Length < 3 || parts[0] != "@Sheet" || parts[1] != "@Index")
                 throw new FormatException($"The header must start with special columns @Sheet and @Index.");
-            
-            ColumnNames = parts.Skip(2).ToArray();
+
+            ColumnNames = parts.Skip(2).TakeWhile(p => !String.IsNullOrWhiteSpace(p)).ToArray();
             ColumnNameIndices = new(ColumnNames.Length, columnNameComparer);
             for (Int32 i = 0; i < ColumnNames.Length; i++)
             {

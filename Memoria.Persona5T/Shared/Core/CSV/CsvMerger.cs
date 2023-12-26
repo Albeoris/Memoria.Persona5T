@@ -67,7 +67,9 @@ public sealed class CsvMerger
                 }
 
                 if (row.Data.Length != _csvContent.ColumnNames.Length)
-                    throw new FormatException($"Cannot add row with id [{id}]. Expected {_csvContent.ColumnNames.Length} columns, but there is {row.Data.Length}.");
+                {
+                    throw new FormatException($"Cannot add row with id [{id}]. Expected {_csvContent.ColumnNames.Length} columns [{String.Join(";", _csvContent.ColumnNames)}], but there is {row.Data.Length} [{String.Join(";", row.Data)}].");
+                }
 
                 String[] normalizedData = new String[_csvContent.ColumnNames.Length];
                 for (Int32 i = 0; i < normalizedData.Length; i++)
