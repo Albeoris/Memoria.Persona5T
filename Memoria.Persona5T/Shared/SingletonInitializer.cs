@@ -25,18 +25,7 @@ public sealed class SingletonInitializer
             GameObject singletonObject = new GameObject(name);
             singletonObject.hideFlags = HideFlags.HideAndDontSave;
             GameObject.DontDestroyOnLoad(singletonObject);
-            singletonObject.AddComponent<MainThreadDispatcher>();
-            
-            MainThreadDispatcher.UpdateAsObservable().Subscribe((Il2CppSystem.Action<Unit>)delegate (Unit unit)
-            {
-                ModComponent.Update();
-            });
-            
-            MainThreadDispatcher.LateUpdateAsObservable().Subscribe((Il2CppSystem.Action<Unit>)delegate (Unit unit)
-            {
-                ModComponent.LateUpdate();
-            });
-
+            singletonObject.AddComponent<MainThreadDispatcher>(); // We cannot subscribe here - it'll lead to crash; using hooks of MainThreadDispatcher methods instead  
             ModComponent.Awake();
             
             _log.LogInfo("In-game singleton initialized successfully.");
