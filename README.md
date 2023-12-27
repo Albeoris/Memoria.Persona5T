@@ -6,7 +6,7 @@ This is a small modification that makes gameplay of [Persona 5 Tactica](https://
 
 ## Installation:
 - Unpack [BepInEx_UnityMono_x64_6.0.0-pre.1](https://github.com/Albeoris/Memoria.Persona5T/releases/download/v2023.12.26/BepInEx.6.0.0-be.674.-.Persona.5.Tactica.zip) into the game folder.
-- Unpack the [mod](https://github.com/Albeoris/Memoria.Persona5T/releases/download/v2023.12.26/Memoria.Persona5T.Steam_v2023.12.26.zip) archive into the game folder.
+- Unpack the [mod](https://github.com/Albeoris/Memoria.Persona5T/releases/download/v2023.12.27/Memoria.Persona5T.Steam_v2023.12.27.zip) archive into the game folder.
 
 If you are already using BepInEx to load other mods, use the most recent version of the loader.
 (But the current version has been patched; new versions may not be compatible with Persona 5 Tactica)
