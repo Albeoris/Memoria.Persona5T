@@ -9,7 +9,10 @@ namespace Memoria.Persona5T.Core;
 
 public static class InputManager
 {
-    public static KeyControl GetKeyControl(String name) => Keyboard.current.GetChildControl(name).Cast<KeyControl>();
+    private static Keyboard _keyboard;
+    public static Keyboard Keyboard => _keyboard ??= Keyboard.current;
+    
+    public static KeyControl GetKeyControl(String name) => Keyboard.GetChildControl(name).Cast<KeyControl>();
     public static KeyControl GetKeyControl(KeyCode keyCode) => GetKeyControl(keyCode.ToString());
     public static Boolean InputGetKey(KeyCode keyCode) => GetKeyControl(keyCode).isPressed;
     public static Boolean InputGetKeyDown(KeyCode keyCode) => GetKeyControl(keyCode).wasPressedThisFrame;
