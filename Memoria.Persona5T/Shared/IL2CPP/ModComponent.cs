@@ -3,9 +3,6 @@ using BepInEx.Logging;
 using Memoria.Persona5T.Configuration;
 using Memoria.Persona5T.Core;
 using Memoria.Persona5T.Mods;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using Exception = System.Exception;
 using Logger = BepInEx.Logging.Logger;
 
@@ -52,7 +49,7 @@ public static class ModComponent
         {
             if (_isDisabled)
                 return;
-            
+
             ModFiles.TryUpdate();
         }
         catch (Exception ex)
@@ -61,15 +58,16 @@ public static class ModComponent
             Log.LogError($"[{nameof(ModComponent)}].{nameof(Update)}(): {ex}");
         }
     }
-    
+
     public static void LateUpdate()
     {
         try
         {
             if (_isDisabled)
                 return;
-    
-            SpeedControl.TryUpdate();
+
+            InputManager.Update();
+            SpeedControl.TryUpdate();//
         }
         catch (Exception ex)
         {

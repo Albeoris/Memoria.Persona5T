@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Game.Common;
-using Memoria.Persona5T.BeepInEx;
 using Memoria.Persona5T.Configuration;
 using Memoria.Persona5T.Core;
 using Memoria.Persona5T.HarmonyHooks;

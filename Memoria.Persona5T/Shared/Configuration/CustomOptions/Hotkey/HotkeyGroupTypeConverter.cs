@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using BepInEx.Configuration;
-using UnityEngine;
 using Object = System.Object;
 
 namespace Memoria.Persona5T.Configuration.Hotkey;
@@ -30,7 +29,7 @@ public static class HotkeyGroupTypeConverter
     public static String ConvertToString(HotkeyGroup hotkey)
     {
         if (hotkey == default || hotkey.Keys.Count == 0)
-            return KeyCode.None.ToString();
+            return WindowsKey.None.ToString();
 
         return String.Join("; ", hotkey.Keys.Select(HotkeyTypeConverter.ConvertToString));
     }

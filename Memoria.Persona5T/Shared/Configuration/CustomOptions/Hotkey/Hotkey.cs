@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Memoria.Persona5T.Configuration.Hotkey;
 
 public sealed class Hotkey
 {
-    public static Hotkey None => new Hotkey(KeyCode.None);
+    public static Hotkey None => new Hotkey(WindowsKey.None);
     
     public Boolean MustHeld { get; set; }
 
-    public KeyCode Key { get; } = KeyCode.None;
+    public WindowsKey Key { get; } = WindowsKey.None;
     public String Action { get; } = "None";
 
-    public Hotkey(KeyCode key)
+    public Hotkey(WindowsKey key)
     {
         Key = key;
     }
@@ -30,6 +29,6 @@ public sealed class Hotkey
     public Boolean Shift { get; set; }
     public Boolean Control { get; set; }
     
-    public IReadOnlyList<KeyCode> ModifierKeys { get; set; } = Array.Empty<KeyCode>();
+    public IReadOnlyList<WindowsKey> ModifierKeys { get; set; } = Array.Empty<WindowsKey>();
     public IReadOnlyList<String> ModifierActions { get; set; } = Array.Empty<String>();
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Memoria.Persona5T.Configuration.Hotkey;
-using UnityEngine;
 
 namespace Memoria.Persona5T.Configuration;
 
@@ -11,7 +10,7 @@ public abstract partial class SpeedConfiguration
 
     [ConfigEntry($"Speed up key.")]
     [ConfigConverter(nameof(KeyConverter))]
-    public virtual HotkeyGroup Key { get; } = HotkeyGroup.Create(new[] { new Hotkey.Hotkey(KeyCode.F1), new Hotkey.Hotkey(KeyCode.F1) { MustHeld = true } });
+    public virtual HotkeyGroup Key { get; } = HotkeyGroup.Create(new[] { new Hotkey.Hotkey(WindowsKey.F1), new Hotkey.Hotkey(WindowsKey.F1) { MustHeld = true } });
 
     [ConfigEntry($"Speed up toggle factor.")]
     public virtual Single ToggleFactor { get; } = 3.0f;

@@ -5,9 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Il2CppSystem.Collections;
-using Memoria.Persona5T.IL2CPP;
-using Timeline;
 
 namespace Memoria.Persona5T.Core;
 

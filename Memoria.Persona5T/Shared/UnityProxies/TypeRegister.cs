@@ -2,7 +2,6 @@
 using System.Reflection;
 using BepInEx.Logging;
 using Il2CppInterop.Runtime.Injection;
-using Il2CppSystem.Collections.Generic;
 
 namespace Memoria.Persona5T;
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using Memoria.Persona5T.IL2CPP;
 
 namespace Memoria.Persona5T.Core;
 

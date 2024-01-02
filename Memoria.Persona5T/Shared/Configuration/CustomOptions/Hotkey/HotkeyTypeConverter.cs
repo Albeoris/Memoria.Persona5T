@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BepInEx.Configuration;
-using UnityEngine;
 using Object = System.Object;
 
 namespace Memoria.Persona5T.Configuration.Hotkey;
@@ -32,7 +31,7 @@ public static class HotkeyTypeConverter
     public static String ConvertToString(Hotkey hotkey)
     {
         if (hotkey == default)
-            return KeyCode.None.ToString();
+            return WindowsKey.None.ToString();
 
         StringBuilder sb = new();
         if (hotkey.Control) sb.Append("Ctrl+");
@@ -73,7 +72,7 @@ public static class HotkeyTypeConverter
     public static Hotkey ConvertToObject(String value)
     {
         if (String.IsNullOrWhiteSpace(value))
-            return new Hotkey(KeyCode.None);
+            return new Hotkey(WindowsKey.None);
 
         String[] split = value
             .Split('+', '-')
@@ -81,20 +80,20 @@ public static class HotkeyTypeConverter
             .ToArray();
 
         if (split.Length == 0)
-            return new Hotkey(KeyCode.None);
+            return new Hotkey(WindowsKey.None);
 
         String last = split.Last();
         Boolean mustHeld = CheckMustHeld(ref last);
 
         if (last.Length == 0)
-            return new Hotkey(KeyCode.None);
+            return new Hotkey(WindowsKey.None);
 
-        ParseKeyOrAction(last, out KeyCode key, out String action);
+        ParseKeyOrAction(last, out WindowsKey key, out String action);
 
         Boolean alt = false;
         Boolean shift = false;
         Boolean control = false;
-        List<KeyCode> modifierKeys = new();
+        List<WindowsKey> modifierKeys = new();
         List<String> modifierActions = new();
         for (Int32 i = 0; i < split.Length - 1; i++)
         {
@@ -112,7 +111,7 @@ public static class HotkeyTypeConverter
                     break;
                 default:
                     ParseKeyOrAction(split[i], out var modKey, out var modAction);
-                    if (modKey != KeyCode.None)
+                    if (modKey != WindowsKey.None)
                         modifierKeys.Add(modKey);
                     if (!String.Equals(modAction, "None", StringComparison.InvariantCultureIgnoreCase))
                         modifierActions.Add(modAction);
@@ -130,22 +129,22 @@ public static class HotkeyTypeConverter
         result.Control = control;
         result.Alt = alt;
         result.Shift = shift;
-        result.ModifierKeys = modifierKeys.Count > 0 ? modifierKeys : Array.Empty<KeyCode>();
+        result.ModifierKeys = modifierKeys.Count > 0 ? modifierKeys : Array.Empty<WindowsKey>();
         result.ModifierActions = modifierActions.Count > 0 ? modifierActions : Array.Empty<String>();
 
         return result;
     }
 
-    private static void ParseKeyOrAction(String last, out KeyCode key, out String action)
+    private static void ParseKeyOrAction(String last, out WindowsKey key, out String action)
     {
         if (last[0] == '[' && last[last.Length - 1] == ']')
         {
-            key = KeyCode.None;
+            key = WindowsKey.None;
             action = last.Substring(1, last.Length - 2);
         }
         else
         {
-            key = (KeyCode)Enum.Parse(typeof(KeyCode), last);
+            key = (WindowsKey)Enum.Parse(typeof(WindowsKey), last);
             action = "None";
         }
     }
